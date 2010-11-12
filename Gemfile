@@ -13,6 +13,7 @@ group :test do
 end
 
 group :cucumber do
+  gem 'pickle'
   gem 'capybara'
   gem 'database_cleaner'
   gem 'cucumber-rails'
@@ -20,6 +21,7 @@ group :cucumber do
   gem 'rspec-rails', '>= 2.0.0.beta.10'
   gem 'spork'
   gem 'launchy'    # So you can do Then show me the page
+  gem 'pickle'
 end  
 
 # Use unicorn as the web server
