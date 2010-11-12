@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.0.rc'
+gem 'rails', '3.0.0'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -8,17 +8,19 @@ gem 'rails', '3.0.0.rc'
 gem 'sqlite3-ruby', :require => 'sqlite3'
 
 group :test do
-  gem 'rspec-rails', '>= 2.0.0.beta.10'
+  gem 'rspec-rails', '>= 2.0.0'
   gem 'shoulda'
+  gem 'factory_girl'
 end
 
 group :cucumber do
+  gem 'factory_girl'
   gem 'pickle'
   gem 'capybara'
   gem 'database_cleaner'
   gem 'cucumber-rails'
-  gem 'cucumber', '0.7.3'
-  gem 'rspec-rails', '>= 2.0.0.beta.10'
+  gem 'cucumber', '>= 0.9.4'
+  gem 'rspec-rails', '>= 2.0.0'
   gem 'spork'
   gem 'launchy'    # So you can do Then show me the page
   gem 'pickle'
