@@ -7,11 +7,11 @@ class SurveysController < ApplicationController
   def new
     @survey = Survey.new
   end
-#  
-#  def show
-#    @survey = Survey.find(params[:id])
-#  end
-#  
+
+  def show
+    @survey = Survey.find(params[:id])
+  end
+  
   def create
      @survey = Survey.new(params[:survey])
      @survey.save

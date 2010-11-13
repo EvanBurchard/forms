@@ -20,6 +20,26 @@ describe SurveysController do
       response.should render_template('new')
     end
   end
+  describe "when I GET 'show'" do 
+    before(:each) do 
+      Survey.stub!(:find).and_return(@survey = mock_model(Survey, :id => 1))
+      get 'show', :id => 1
+    end
+      
+    it {should assign_to :survey}
+    it "should render the show view when I GET 'show' with id 1" do
+      response.should render_template('show')
+    end
+  end
+  describe "when I GET 'new'" do 
+    before(:each) do 
+      get 'new'
+    end
+    it { should assign_to :survey }
+    it "should render the new view when I GET 'new'" do
+      response.should render_template('new')
+    end
+  end
   describe "when I successfully POST 'create" do 
     before(:each) do
       Survey.stub!(:new).and_return(@survey = mock_model(Survey, :save=>true))
