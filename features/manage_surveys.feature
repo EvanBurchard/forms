@@ -23,4 +23,10 @@ Feature: Survey Management
     When I follow "Delete"
     Then the survey should not exist
   Scenario: Survey editing
+    Given a survey exists with title: "My new survey"
+    And I am on the survey's edit page
+    When I fill in "survey_title" with "My new updated survey" 
+    And I press "survey_submit"
+    Then a survey should exist with title: "My new updated survey"
+    And I should be on the survey's page
 

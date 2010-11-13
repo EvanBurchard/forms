@@ -40,6 +40,19 @@ describe SurveysController do
       response.should render_template('new')
     end
   end
+
+  describe "when I GET 'edit'" do 
+    before(:each) do 
+      @survey = mock_model(Survey, :id => 1) 
+      Survey.stub!(:find).and_return(@survey)
+      get 'edit', :id => 1
+    end
+    it { should assign_to :survey }
+    it "should render the edit view when I GET 'edit'" do
+      response.should render_template('edit')
+    end
+  end
+
   describe "when I successfully POST 'create" do 
     before(:each) do
       Survey.stub!(:new).and_return(@survey = mock_model(Survey, :save=>true))
@@ -63,6 +76,36 @@ describe SurveysController do
       response.should be_redirect
     end
   end
+
+  describe "when I PUT update" do
+    before(:each) do 
+      Survey.stub!(:find).and_return(@survey = mock_model(Survey, :title => "my survey"))
+      @survey.stub!(:update_attributes).and_return(true)
+    end
+    def do_update
+      put 'update', :id => @survey.id, :survey => {:title=>"updated survey"}
+    end
+    it "should update the survey object's attributes" do
+      @survey.should_receive(:update_attributes).and_return(true)
+      do_update
+    end
+
+    it "should assign to survey" do 
+      do_update
+      assigns[:survey].should_not be_nil
+    end
+
+    it "should be redirect" do
+      do_update
+      response.should be_redirect    
+    end
+
+    it "should redirect to the survey path" do
+      do_update
+      response.should redirect_to(survey_path(@survey))
+    end
+
+  end 
 
   describe "when I destroy a survey" do 
 

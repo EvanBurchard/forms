@@ -21,15 +21,17 @@ class SurveysController < ApplicationController
 #    end
   end
 #
-#  def edit
-#  end
-#  
-#  def update
-#    params[:survey][:scheme_ids] ||= []  
-#    @survey.update_attributes(params[:survey])
-#    redirect_to survey_path(@survey)
-#  end
-#
+  def edit
+    @survey = Survey.find(params[:id])
+  end
+
+  
+  def update
+    @survey = Survey.find(params[:id])
+    @survey.update_attributes(params[:survey])
+    redirect_to survey_path(@survey)
+  end
+
   def destroy
     @survey = Survey.find(params[:id])
     @survey.destroy
