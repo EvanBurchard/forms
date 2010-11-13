@@ -1,1 +1,19 @@
-<%= @survey.title %>
+<h1><%= @survey.title %></h1>
+
+<ol>
+<% for question in @survey.questions %>
+  <li>
+    <%=h question.prompt %>
+    <ul>
+    <% for choice in question.choices %>
+      <li><%=h choice.answer %></li>
+    <% end %>
+    </ul>
+  </li>
+<% end %>
+</ol>
+
+<p>
+  <%= link_to "Edit", edit_survey_path(@survey) %> |
+  <%= link_to "View All", surveys_path %>
+</p>

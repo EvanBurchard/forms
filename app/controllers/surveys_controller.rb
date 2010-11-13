@@ -6,6 +6,11 @@ class SurveysController < ApplicationController
   
   def new
     @survey = Survey.new
+    #untested
+    3.times do
+      question = @survey.questions.build
+      4.times { question.choices.build }
+    end
   end
 
   def show
@@ -20,7 +25,7 @@ class SurveysController < ApplicationController
 #      render :action => 'new'
 #    end
   end
-#
+
   def edit
     @survey = Survey.find(params[:id])
   end

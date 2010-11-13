@@ -1,7 +1,2 @@
 <h1>New Survey</h1>
-
-<% form_for @survey do |f|%>
-  <%= f.label :title %>
-	<%= f.text_field :title %>
-	<%= f.submit "Submit"%>
-<% end %>
+<%= render :partial => 'form' %>
