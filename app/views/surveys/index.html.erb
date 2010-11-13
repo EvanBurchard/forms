@@ -1,3 +1,4 @@
 <% @surveys.each do |s| %>
   <p><%= s.title %></p> 
+  <%= link_to "Delete", s, :method => :delete %>
 <% end %>

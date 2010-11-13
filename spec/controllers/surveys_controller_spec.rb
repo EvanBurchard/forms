@@ -64,4 +64,26 @@ describe SurveysController do
     end
   end
 
+  describe "when I destroy a survey" do 
+
+    before(:each) do
+      @survey = mock_model(Survey, :id=> 1)
+      Survey.stub!(:find).and_return(@survey) 
+      Survey.stub!(:delete).and_return(true) 
+    end
+
+    it "should delete the survey" do
+      @survey.should_receive(:destroy).and_return(true)
+      delete :destroy, :id => @survey.id
+    end
+    
+    it "should be redirect" do
+      delete :destroy, :id => @survey.id
+      response.should be_redirect
+    end
+    it "should redirect to the survey page" do 
+      delete :destroy, :id => @survey.id
+      response.should redirect_to(surveys_path)                   
+    end
+  end 
 end
