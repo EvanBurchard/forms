@@ -22,6 +22,7 @@ Feature: Survey Management
     And I am on the surveys page
     When I follow "Delete"
     Then the survey should not exist
+
   Scenario: Survey editing
     Given a survey exists with title: "My new survey"
     And I am on the survey's edit page

@@ -31,15 +31,6 @@ describe SurveysController do
       response.should render_template('show')
     end
   end
-  describe "when I GET 'new'" do 
-    before(:each) do 
-      get 'new'
-    end
-    it { should assign_to :survey }
-    it "should render the new view when I GET 'new'" do
-      response.should render_template('new')
-    end
-  end
 
   describe "when I GET 'edit'" do 
     before(:each) do 
