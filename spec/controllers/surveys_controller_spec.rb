@@ -1,6 +1,16 @@
 require 'spec_helper'
 
 describe SurveysController do
+
+  describe "when I GET 'index'" do 
+    before(:each) do 
+      get 'index'
+    end
+    it {should assign_to :surveys}
+    it "should render the index view when I GET 'index'" do
+      response.should render_template('index')
+    end
+  end
   describe "when I GET 'new'" do 
     before(:each) do 
       get 'new'

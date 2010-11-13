@@ -1,8 +1,8 @@
 class SurveysController < ApplicationController
 
-#  def index
-#    @surveys = Survey.all
-#  end
+  def index
+    @surveys = Survey.all
+  end
   
   def new
     @survey = Survey.new
@@ -15,7 +15,7 @@ class SurveysController < ApplicationController
   def create
      @survey = Survey.new(params[:survey])
      @survey.save
-     redirect_to :action => 'new'
+     redirect_to :action => 'index'
 #    else
 #      render :action => 'new'
 #    end
