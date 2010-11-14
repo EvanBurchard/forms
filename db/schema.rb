@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101113095212) do
+ActiveRecord::Schema.define(:version => 20101114002424) do
 
   create_table "choices", :force => true do |t|
     t.string  "answer"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(:version => 20101113095212) do
   create_table "questions", :force => true do |t|
     t.string  "prompt"
     t.integer "survey_id"
+    t.string  "type_of_question"
   end
 
   create_table "responses", :force => true do |t|

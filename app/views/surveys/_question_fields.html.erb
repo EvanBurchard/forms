@@ -2,11 +2,18 @@
   <p>
     <%= f.label :prompt, "Question" %>
     <%= link_to_remove_fields "remove", f %><br />
-    <%= f.text_area :prompt, :rows => 3 %>
+    <%= f.text_field :prompt, :rows => 3 %>
+  </p>
+  <p>
+    <%= f.label :type_of_question, "Type of question:" %>
+    <%= f.radio_button(:type_of_question, "one_choice", :checked => "") %>
+    <%= f.label :multiple_choice, "One choice (can select one)" %>
+
+    <%= f.radio_button(:type_of_question, "multiple_choice", :checked => :type_of_question) %>
+    <%= f.label :multiple_choice, "Multiple choice (can select multiple)" %>
   </p>
   <% f.fields_for :choices do |builder| %>
     <%= render 'choice_fields', :f => builder %>
   <% end %>
   <p><%= link_to_add_fields "Add Answer", f, :choices %></p>
 </div>
-
