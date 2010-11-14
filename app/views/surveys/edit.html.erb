@@ -1,7 +1,7 @@
 <h1>Edit survey</h1>
-<% form_for @survey do |f|%>
-	<%= f.label "Title" %>
-	<%= f.text_field :title %>
-	<%= f.submit "Update" %> 
-<% end %>
+<%= render :partial => 'form' %>
 
+<p>
+  <%= link_to "Show", @survey %> |
+  <%= link_to "View All", surveys_path %>
+</p>
