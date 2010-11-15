@@ -5,6 +5,7 @@ describe SubmissionsController do
   describe "when I GET 'index'" do 
     before(:each) do 
       @survey = mock_model(Survey, :id => 1)
+      Survey.stub(:find).and_return(@survey)
       get 'index', :survey_id => @survey.id
     end
     it {should assign_to :submissions}
@@ -16,6 +17,7 @@ describe SubmissionsController do
   describe "when I GET 'new'" do 
     before(:each) do 
       @survey = mock_model(Survey, :id => 1)
+      Survey.stub(:find).and_return(@survey)
       get 'new', :survey_id => @survey.id
     end
     it { should assign_to :submission }
@@ -26,6 +28,7 @@ describe SubmissionsController do
   describe "when I GET 'show'" do 
     before(:each) do 
       @survey = mock_model(Survey, :id => 1)
+      Survey.stub(:find).and_return(@survey)
       Submission.stub!(:find).and_return(@submission = mock_model(Submission, :id => 1))
       get 'show', :id => 1, :survey_id => @survey.id
     end
@@ -40,7 +43,10 @@ describe SubmissionsController do
   describe "when I successfully POST 'create" do 
     before(:each) do
       @survey = mock_model(Survey, :id => 1)
+      Survey.stub(:find).and_return(@survey)
       Submission.stub!(:new).and_return(@submission = mock_model(Submission, :save=>true))
+      nil.stub(:each).and_return(["3", "4"])
+      @submission.stub(:save)
     end 
     def do_create
       post :create, :submission => {:title=>"My create"}, :survey_id => @survey.id

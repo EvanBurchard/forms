@@ -17,12 +17,6 @@ Feature: Survey Management
     And I am on that survey's page
     Then I should see "My new survey"
 
-  Scenario: Survey deletion
-    Given a survey exists with title: "My new survey"
-    And I am on the surveys page
-    When I follow "Delete"
-    Then the survey should not exist
-
   Scenario: Survey editing
     Given a survey exists with title: "My new survey"
     And I am on the survey's edit page
