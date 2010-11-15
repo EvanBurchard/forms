@@ -1,0 +1,22 @@
+<h1><%= "Submissions for survey called \"#{@survey.title}\"" %></h1>
+<% @survey.submissions.each do |s| %>
+  <table><%= "Submission ##{s.id} on #{s.time_stamp}" %>
+    <thead>
+      <tr>
+        <th>question</th>
+        <th>answers</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @survey.questions.each do |q| %>
+      <tr>
+        <td> <%= q.prompt %> </td>
+        <td> <%= s.responses.map(&:choices)[0].map(&:answer)[0] %> </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>
+<br />
+<br />
+<%= link_to "View the survey", survey_path(@survey) %>

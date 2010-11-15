@@ -14,8 +14,8 @@ class TheRestOfTheModels < ActiveRecord::Migration
     end
 
     create_table :choices_responses, :id => false do |t|
-      t.integer :response_id, :integer, :null => false
-      t.integer :choice_id, :integer, :null => false 
+      t.integer :response_id, :integer
+      t.integer :choice_id, :integer
     end
     create_table :questions do |t|
       t.string :prompt

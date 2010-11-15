@@ -18,9 +18,9 @@ ActiveRecord::Schema.define(:version => 20101114002424) do
   end
 
   create_table "choices_responses", :id => false, :force => true do |t|
-    t.integer "response_id", :null => false
-    t.integer "integer",     :null => false
-    t.integer "choice_id",   :null => false
+    t.integer "response_id"
+    t.integer "integer"
+    t.integer "choice_id"
   end
 
   create_table "questions", :force => true do |t|

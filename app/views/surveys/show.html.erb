@@ -17,3 +17,9 @@
   <%= link_to "Edit", edit_survey_path(@survey) %> |
   <%= link_to "View All", surveys_path %>
 </p>
+<p>
+  <%= link_to "Take this survey", new_survey_submission_path(@survey) %>
+</p>
+<p>
+<%= link_to "View submissions", survey_submissions_path(@survey) %>
+</p>

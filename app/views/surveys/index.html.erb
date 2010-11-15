@@ -1,7 +1,6 @@
 <% @surveys.each do |s| %>
   <p><%= s.title %></p> 
   <%= link_to "Show", survey_path(s) %>
-  <%= link_to "Delete", s, :method => :delete %>
 <% end %>
 <br />
 <br />

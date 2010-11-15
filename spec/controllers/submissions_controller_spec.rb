@@ -4,7 +4,8 @@ describe SubmissionsController do
 
   describe "when I GET 'index'" do 
     before(:each) do 
-      get 'index'
+      @survey = mock_model(Survey, :id => 1)
+      get 'index', :survey_id => @survey.id
     end
     it {should assign_to :submissions}
     it "should render the index view when I GET 'index'" do
@@ -14,7 +15,8 @@ describe SubmissionsController do
 
   describe "when I GET 'new'" do 
     before(:each) do 
-      get 'new'
+      @survey = mock_model(Survey, :id => 1)
+      get 'new', :survey_id => @survey.id
     end
     it { should assign_to :submission }
     it "should render the new view when I GET 'new'" do
@@ -23,8 +25,9 @@ describe SubmissionsController do
   end
   describe "when I GET 'show'" do 
     before(:each) do 
+      @survey = mock_model(Survey, :id => 1)
       Submission.stub!(:find).and_return(@submission = mock_model(Submission, :id => 1))
-      get 'show', :id => 1
+      get 'show', :id => 1, :survey_id => @survey.id
     end
       
     it {should assign_to :submission}
@@ -36,10 +39,11 @@ describe SubmissionsController do
 
   describe "when I successfully POST 'create" do 
     before(:each) do
+      @survey = mock_model(Survey, :id => 1)
       Submission.stub!(:new).and_return(@submission = mock_model(Submission, :save=>true))
     end 
     def do_create
-      post :create, :submission => {:title=>"My create"}
+      post :create, :submission => {:title=>"My create"}, :survey_id => @survey.id
     end
     
     it "should assign the submission" do
