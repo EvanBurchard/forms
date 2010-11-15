@@ -8,10 +8,10 @@
       </tr>
     </thead>
     <tbody>
-      <% @survey.questions.each do |q| %>
+      <% @survey.questions.each_with_index do |q, i| %>
       <tr>
         <td> <%= q.prompt %> </td>
-        <td> <%= s.responses.map(&:choices)[0].map(&:answer)[0] %> </td>
+        <td> <%= s.responses.map(&:choices)[i].map(&:answer)[0] %> </td>
       </tr>
     <% end %>
     </tbody>
