@@ -21,14 +21,8 @@ class SubmissionsController < ApplicationController
     @survey = Survey.find(params[:survey_id])
     @responses = []
     if response_params = params[:submission][:responses_attributes]
-      response_params.each do |c|
-        r = Response.new
-        choices = c[1]["choices_attributes"]["id"].map(&:to_i)
-        choices = choices.map do |c|
-          Choice.find(c)
-        end
-        r.choices = choices
-        @responses << r
+      response_params.each do |key, value|
+      @responses << Response.new(:choices => Choice.find(value["choices_attributes"]["id"]))
       end
     end
     @submission = Submission.new(:survey_id => params[:survey_id], :user_id => params[:submission][:user_id], :responses => @responses, :time_stamp => Time.now)
