@@ -30,9 +30,9 @@ class SubmissionsController < ApplicationController
         r.choices = choices
         @responses << r
       end
-    rescue
-      @responses = []
-    end 
+    rescue 
+      nil
+    end
     @submission = Submission.new(:survey_id => params[:survey_id], :user_id => params[:submission][:user_id], :responses => @responses, :time_stamp => Time.now)
     @submission.save
     redirect_to :controller => 'surveys', :action => 'index'
