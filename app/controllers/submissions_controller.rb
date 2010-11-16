@@ -20,8 +20,8 @@ class SubmissionsController < ApplicationController
   def create
     @survey = Survey.find(params[:survey_id])
     @responses = []
-    begin
-      params[:submission][:responses_attributes].each do |c|
+    if response_params = params[:submission][:responses_attributes]
+      response_params.each do |c|
         r = Response.new
         choices = c[1]["choices_attributes"]["id"].map(&:to_i)
         choices = choices.map do |c|
@@ -30,8 +30,6 @@ class SubmissionsController < ApplicationController
         r.choices = choices
         @responses << r
       end
-    rescue 
-      nil
     end
     @submission = Submission.new(:survey_id => params[:survey_id], :user_id => params[:submission][:user_id], :responses => @responses, :time_stamp => Time.now)
     @submission.save
