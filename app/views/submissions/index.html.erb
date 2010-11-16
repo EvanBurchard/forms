@@ -11,7 +11,7 @@
       <% @survey.questions.each_with_index do |q, i| %>
       <tr>
         <td> <%= q.prompt %> </td>
-        <td> <%= s.responses.map(&:choices)[i].map(&:answer)[0] %> </td>
+        <td> <%= s.responses.map(&:choices)[i].map(&:answer)[0] rescue nil %> </td>
       </tr>
     <% end %>
     </tbody>
