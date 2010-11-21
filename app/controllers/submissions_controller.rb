@@ -22,7 +22,7 @@ class SubmissionsController < ApplicationController
     @responses = []
     if response_params = params[:submission][:responses_attributes]
       response_params.each do |key, value|
-      @responses << Response.new(:choices => Choice.find(value["choices_attributes"]["id"]))
+        @responses << Response.new(:choice => Choice.find(value["choices_attributes"]["id"].first))
       end
     end
     @submission = Submission.new(:survey_id => params[:survey_id], :user_id => params[:submission][:user_id], :responses => @responses, :time_stamp => Time.now)

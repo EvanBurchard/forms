@@ -7,4 +7,5 @@ describe Submission do
   it { should belong_to(:user) }
   it { should belong_to(:survey) }
   it { should have_many(:responses) }
+  it { should have_many(:choices).through (:responses) }
 end

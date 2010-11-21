@@ -10,17 +10,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101114002424) do
+ActiveRecord::Schema.define(:version => 20101121223339) do
 
   create_table "choices", :force => true do |t|
     t.string  "answer"
     t.integer "question_id"
-  end
-
-  create_table "choices_responses", :id => false, :force => true do |t|
-    t.integer "response_id"
-    t.integer "integer"
-    t.integer "choice_id"
   end
 
   create_table "questions", :force => true do |t|
@@ -31,6 +25,7 @@ ActiveRecord::Schema.define(:version => 20101114002424) do
 
   create_table "responses", :force => true do |t|
     t.integer "submission_id"
+    t.integer "choice_id"
   end
 
   create_table "submissions", :force => true do |t|

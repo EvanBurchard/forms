@@ -1,5 +1,6 @@
 class Choice < ActiveRecord::Base
   belongs_to :question
-  has_and_belongs_to_many :responses
+  has_many :responses
+  has_many :submissions, :through => :responses
 
 end
