@@ -7,10 +7,10 @@
   <p>
     <%= f.label :type_of_question, "Type of question:" %>
     <%= f.radio_button(:type_of_question, "one_choice", :checked => "") %>
-    <%= f.label :multiple_choice, "One choice (can select one)" %>
+    <%= f.label :multiple_choice, "One choice (can select one)", :for => "survey_questions_attributes_0_type_of_question_one_choice" %>
 
     <%= f.radio_button(:type_of_question, "multiple_choice", :checked => :type_of_question) %>
-    <%= f.label :multiple_choice, "Multiple choice (can select multiple)" %>
+    <%= f.label :multiple_choice, "Multiple choice (can select multiple)", :for => "survey_questions_attributes_0_type_of_question_multiple_choice" %>
   </p>
   <% f.fields_for :choices do |builder| %>
     <%= render 'choice_fields', :f => builder %>
