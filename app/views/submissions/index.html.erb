@@ -11,13 +11,47 @@
     <tr>
       <td> <%= q.prompt %> </td>
       <% q.choices.each do |c| %>
-        <td> <%= c.answer %> </td>
-        <td> <%= c.responses.count %> </td>
+        <tr>
+        <% if q.type_of_question == "one_choice" %>
+          <td> <%= c.answer %> </td>
+          <td> <%= c.responses.count %> </td>
+          <td> <%= number_to_percentage(c.responses.count * 100 / q.responses.size ) %> </td>
+        <% else %>
+          <td> <%= c.answer %> </td>
+          <td> <%= c.responses.count %> </td>
+          <td> <%= number_to_percentage(c.responses.count * 100 / q.responses.size) %> </td>
+        </tr>
+        <% end %>
       <% end %>
     </tr>
   <% end %>
   </tbody>
 </table>
+
+<table>
+  <thead>
+    <tr>
+      <th>submissions</th>
+    </tr>
+    <tr>
+      <th>Time_stamp</th>
+      <% @survey.questions.each do |q| %>
+        <th><%= q.prompt %></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @survey.submissions.all.each do |s| %>
+      <tr>
+        <td> <%= s.time_stamp %> </td>
+        <% @survey.questions.each do |q| %> 
+          <td><%= q.responses.of_submission(s).map { |r| r.choice.answer }.join(', ') %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
 <br />
 <br />
 <%= link_to "View the survey", survey_path(@survey) %>

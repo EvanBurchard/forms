@@ -20,10 +20,12 @@ class SubmissionsController < ApplicationController
   def create
     @survey = Survey.find(params[:survey_id])
     @responses = []
-    if response_params = params[:submission][:responses_attributes]
+    response_params = params[:submission][:responses_attributes]
       response_params.each do |key, value|
         @responses << Response.new(:choice => Choice.find(value["choices_attributes"]["id"].first))
       end
+    params[:submission][:question][:choice_ids].each do |choice_id|
+      @responses << Response.new(:choice => Choice.find(choice_id)) unless choice_id == ""
     end
     @submission = Submission.new(:survey_id => params[:survey_id], :user_id => params[:submission][:user_id], :responses => @responses, :time_stamp => Time.now)
     @submission.save

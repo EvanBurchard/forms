@@ -7,13 +7,23 @@
     <% choices = q.choices.map { |c| c.answer } %>
     <%= q.prompt %>
     <%= f.semantic_fields_for q do |question| %>
-      <%= question.input :choices, 
-        :as => :radio, 
-        :collection => q.choices, 
-        :required => false, 
-        :label => "", 
-        :label_method => :answer,
-        :name => "submission[responses_attributes][#{q.id}][choices_attributes][id][]" %>
+      <% if q.type_of_question == "one_choice" %>
+        <%= question.input :choices, 
+          :as => :radio, 
+          :collection => q.choices, 
+          :required => false, 
+          :label => "", 
+          :label_method => :answer,
+          :name => "submission[responses_attributes][#{q.id}][choices_attributes][id][]" %>
+      <% else %>
+        <%= question.input :choices, 
+          :as => :check_boxes, 
+          :collection => q.choices, 
+          :required => false, 
+          :label => "", 
+          :label_method => :answer
+           %>
+      <% end %>
     <% end %>
   <% end %>
 	<%= f.buttons %>
